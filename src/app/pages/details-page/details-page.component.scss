@@ -1,0 +1,14 @@
+.film-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+
+  .film-details__container {
+    list-style: none;
+  }
+
+  .film-details__label {
+    font-weight: bold;
+  }
+}

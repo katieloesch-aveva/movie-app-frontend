@@ -1,0 +1,23 @@
+<div class="film-details" *ngIf="film">
+  <ul class="film-details__container">
+    <li><span class="film-details__label">Title:</span> {{ film.title }}</li>
+    <li>
+      <span class="film-details__label">Released:</span>
+      {{ film.release | date : "yyyy" }}
+    </li>
+    <li>
+      <span class="film-details__label">Runtime:</span> {{ film.runtime }} mins
+    </li>
+    <li>
+      <span class="film-details__label">Synopsis:</span> {{ film.synopsis }}
+    </li>
+    <li>
+      <span class="film-details__label">Genre:</span>
+      {{ film.genre.join(", ") }}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="!film">
+  <p>Film not found.</p>
+</div>
