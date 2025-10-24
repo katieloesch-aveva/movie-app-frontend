@@ -1,0 +1,37 @@
+<div class="search-page">
+  <div class="search-container">
+    <h2>Search for a Film</h2>
+
+    <form class="search-form" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Film Title:</label>
+        <input
+          type="text"
+          formControlName="title"
+          placeholder="Enter film title..."
+        />
+      </div>
+
+      <div class="button-group">
+        <button type="submit">Search</button>
+        <button type="button" class="reset-btn" (click)="onReset()">
+          Reset
+        </button>
+      </div>
+    </form>
+
+    <div *ngIf="submitted">
+      <h3 *ngIf="films.length > 0">Results:</h3>
+      <ul *ngIf="films.length > 0; else noResults">
+        <li *ngFor="let film of films" class="film-result">
+          <strong>{{ film.title }}</strong> ({{ film.release }})<br />
+          <small>Genre: {{ film.genre.join(", ") }}</small>
+        </li>
+      </ul>
+
+      <ng-template #noResults>
+        <p class="no-results">No films found matching your search.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

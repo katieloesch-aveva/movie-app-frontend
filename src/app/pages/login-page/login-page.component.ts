@@ -6,11 +6,12 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms'; // ✅ import ReactiveFormsModule
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
 })

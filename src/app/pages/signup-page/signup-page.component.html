@@ -69,6 +69,11 @@
 
       <button type="submit">Sign Up</button>
 
+      <p class="login-link">
+        <span>Already have an account?</span>
+        <a routerLink="/auth/login"><span>Log in</span></a>
+      </p>
+
       <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
