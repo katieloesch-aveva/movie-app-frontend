@@ -1,5 +1,22 @@
-.nav {
-  background-color: beige;
+nav {
   display: flex;
   gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+a{
+  background-color: rgb(59, 10, 81);
+  color: white;
+  padding: 2% 4% ;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20em;
+  
+}
+
+a:hover{
+  background-color: rgba(59, 10, 81, 0.6);;
 }
