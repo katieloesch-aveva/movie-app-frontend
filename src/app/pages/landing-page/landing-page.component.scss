@@ -1,14 +1,30 @@
 .landing-page {
   // background-color: beige;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
+  justify-items: center;
   flex-direction: column;
+  padding: 40px;
+  width: 100%;
+
 
   .landing-page__film-cards-container {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 60px;
+  }
+
+  h3{
+    color: white;
+    font-size: 2rem;
+  }
+  hr{
+    color: white;
+    background-color: white;
+    width: 80%;
+    justify-self: flex-start;
   }
 }
