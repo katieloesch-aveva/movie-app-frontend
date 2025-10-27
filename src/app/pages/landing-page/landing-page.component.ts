@@ -1,8 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CardComponent } from '../../components/card/card.component';
 import { CommonModule } from '@angular/common';
-// import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { Film } from '../../models/film.model';
+import { environment } from '../.../../../../environments/environment';
 
 export const mockData: Film[] = [
   {
@@ -60,18 +62,31 @@ export const mockData: Film[] = [
   styleUrls: ['./landing-page.component.scss'],
 })
 export class LandingPageComponent implements OnInit {
-  // httpClient = inject(HttpClient);
-  data: Film[] = [];
+  private http = inject(HttpClient);
+
+  trendingFilms: any[] = [];
+  private tmdbKey = environment.tmdbKey;
+  private tmdbUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${this.tmdbKey}&append_to_response=videos`;
 
   ngOnInit(): void {
-    this.data = mockData;
-    // console.log('mockdata: ', mockData);
+    // this.trendingFilms = mockData;
+    this.fetchTrendingFilms();
   }
 
-  // fetchData() {
-  //   this.httpClient.get<Film[]>('').subscribe((data) => {
-  //     console.log(data);
-  //     this.data = data;
-  //   });
-  // }
+  fetchTrendingFilms(): void {
+    console.log('Fetching from:', this.tmdbUrl);
+
+    this.http.get<any>(this.tmdbUrl).subscribe({
+      next: (res) => {
+        console.log('TMDB response:', res);
+        this.trendingFilms = res.results.map((film: any) => ({
+          ...film,
+          selected: false,
+        }));
+      },
+      error: (err) => {
+        console.error('Error fetching trending films:', err);
+      },
+    });
+  }
 }
