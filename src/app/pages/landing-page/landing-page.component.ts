@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { Film } from '../../models/film.model';
-import { environment } from '../.../../../../enviroments/environment';
+import { environment } from '../.../../../../environments/environment';
 
 // export const mockData: Film[] = [
 //   {
