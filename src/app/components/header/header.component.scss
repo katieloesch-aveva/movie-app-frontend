@@ -1,4 +1,6 @@
 .header {
+  position: fixed;
+  top: 0;
   border: 1px solid black;
   display: flex;
   justify-content: space-around;
@@ -7,6 +9,7 @@
   color: white;
   background-color: black;
   gap: 30%;
+  width: 100%;
 
   a{
     color: white;
