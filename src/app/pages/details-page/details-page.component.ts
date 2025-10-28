@@ -1,7 +1,6 @@
 import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule, isPlatformBrowser, Location } from '@angular/common';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import { Film } from '../../models/film.model';
@@ -17,10 +16,7 @@ import { environment } from '../../../environments/environment';
 })
 export class DetailsPageComponent implements OnInit {
   private route = inject(ActivatedRoute);
-  private router = inject(Router);
   private http = inject(HttpClient);
-  private location = inject(Location);
-  private platformId = inject(PLATFORM_ID);
 
   film?: Film;
 
