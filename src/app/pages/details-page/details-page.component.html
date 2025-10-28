@@ -9,21 +9,24 @@
   </div>
 
   <ul class="film-details__container">
-    <li><span class="film-details__label">Title:</span> {{ f.title }}</li>
-    <li>
+    <div class="film-details__header">
+    <li class="title__label"> {{ f.title }} ({{ f.release | date : "yyyy" }})</li>
+    </div>
+    <!-- <li>
       <span class="film-details__label">Released:</span>
       {{ f.release | date : "yyyy" }}
+    </li> -->
+    <li>
+      <span class="film-details__label">{{ f.runtime ?? "—" }} mins</span>
+     
+      
     </li>
     <li>
-      <span class="film-details__label">Runtime:</span>
-      {{ f.runtime ?? "—" }} mins
+      <span> {{ f.genre?.join(", ") || "—" }} </span>
+      
     </li>
     <li>
-      <span class="film-details__label">Synopsis:</span> {{ f.synopsis ?? "—" }}
-    </li>
-    <li>
-      <span class="film-details__label">Genres:</span>
-      {{ f.genre?.join(", ") || "—" }}
+      <span class="film-details__label"></span> {{ f.synopsis ?? "—" }}
     </li>
   </ul>
 </div>
