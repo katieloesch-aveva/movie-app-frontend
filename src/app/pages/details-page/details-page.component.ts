@@ -1,8 +1,12 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser, Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
 import { Film } from '../../models/film.model';
-// import { mockData } from '../landing-page/landing-page.component';
+import { extractFilmData } from '../../utils/tmdb.util';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-details-page',
@@ -13,11 +17,25 @@ import { Film } from '../../models/film.model';
 })
 export class DetailsPageComponent implements OnInit {
   private route = inject(ActivatedRoute);
-  film: Film | undefined;
+  private router = inject(Router);
+  private http = inject(HttpClient);
+  private location = inject(Location);
+  private platformId = inject(PLATFORM_ID);
+
+  film?: Film;
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    // this.film = mockData.find((f) => f.id === id);
-    // console.log('Loaded film:', this.film);
+    // get TMDB id for film from params
+    this.route.paramMap.subscribe((pm) => {
+      const id = Number(pm.get('id'));
+      if (!Number.isFinite(id)) return;
+
+      // make get request to TMDB to get film details
+      const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${environment.tmdbKey}&append_to_response=videos`;
+      this.http.get<any>(url).subscribe({
+        next: (res) => (this.film = extractFilmData(res)),
+        error: (err) => console.error('Error fetching film details:', err),
+      });
+    });
   }
 }

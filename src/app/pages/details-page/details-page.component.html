@@ -1,23 +1,37 @@
-<div class="film-details" *ngIf="film">
+<!-- details-page.component.html -->
+<div class="film-details" *ngIf="film as f; else notFound">
+  <div class="film-details__header">
+    <img
+      class="film-details__poster"
+      [src]="f.poster_url || 'assets/placeholder-img.png'"
+      [alt]="f.title || 'Poster'"
+    />
+  </div>
+
   <ul class="film-details__container">
-    <li><span class="film-details__label">Title:</span> {{ film.title }}</li>
+    <li><span class="film-details__label">Title:</span> {{ f.title }}</li>
     <li>
       <span class="film-details__label">Released:</span>
-      {{ film.release | date : "yyyy" }}
+      {{ f.release | date : "yyyy" }}
     </li>
     <li>
-      <span class="film-details__label">Runtime:</span> {{ film.runtime }} mins
+      <span class="film-details__label">Runtime:</span>
+      {{ f.runtime ?? "—" }} mins
     </li>
     <li>
-      <span class="film-details__label">Synopsis:</span> {{ film.synopsis }}
+      <span class="film-details__label">Synopsis:</span> {{ f.synopsis ?? "—" }}
     </li>
     <li>
-      <span class="film-details__label">Genre:</span>
-      {{ film.genre.join(", ") }}
+      <span class="film-details__label">Genres:</span>
+      {{ f.genre?.join(", ") || "—" }}
     </li>
   </ul>
 </div>
 
-<div *ngIf="!film">
+<ng-template #notFound>
   <p>Film not found.</p>
-</div>
+</ng-template>
+
+<ng-template #notFound>
+  <p>Film not found.</p>
+</ng-template>
