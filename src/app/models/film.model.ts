@@ -5,4 +5,5 @@ export interface Film {
   runtime: number;
   synopsis: string;
   genre: string[];
+  poster_url?: string;
 }

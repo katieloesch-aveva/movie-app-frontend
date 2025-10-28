@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Film } from '../../models/film.model';
-import { mockData } from '../landing-page/landing-page.component';
+// import { mockData } from '../landing-page/landing-page.component';
 
 @Component({
   selector: 'app-details-page',
@@ -17,7 +17,7 @@ export class DetailsPageComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.film = mockData.find((f) => f.id === id);
+    // this.film = mockData.find((f) => f.id === id);
     // console.log('Loaded film:', this.film);
   }
 }
