@@ -3,7 +3,7 @@ import { CardComponent } from '../../components/card/card.component';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from '../.../../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { extractFilmData } from '../../utils/tmdb.util';
 
 @Component({
@@ -29,6 +29,7 @@ export class LandingPageComponent implements OnInit {
     this.http.get<any>(this.tmdbUrl).subscribe({
       next: (res) => {
         const results = Array.isArray(res?.results) ? res.results : [];
+        console.log(results);
         this.trendingFilms = results.map((r: any) => extractFilmData(r));
       },
       error: (err) => console.error('Error fetching trending films:', err),

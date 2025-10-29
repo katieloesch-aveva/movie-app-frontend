@@ -21,13 +21,10 @@
     </form>
 
     <div *ngIf="submitted">
-      <h3 *ngIf="films.length > 0">Results:</h3>
-      <ul *ngIf="films.length > 0; else noResults">
-        <li *ngFor="let film of films" class="film-result">
-          <strong>{{ film.title }}</strong> ({{ film.release }})<br />
-          <small>Genre: {{ film.genre.join(", ") }}</small>
-        </li>
-      </ul>
+      <h3 *ngIf="filmResults.length > 0">Results:</h3>
+      <div *ngIf="filmResults.length > 0; else noResults">
+        <app-card *ngFor="let film of filmResults" [film]="film"></app-card>
+      </div>
 
       <ng-template #noResults>
         <p class="no-results">No films found matching your search.</p>
