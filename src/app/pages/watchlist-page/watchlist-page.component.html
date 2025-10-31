@@ -1,1 +1,14 @@
-<div class="watchlist-page">Watchlist</div>
+<div class="watchlist-page">
+  <h2>My Watchlist</h2>
+
+  <div *ngIf="svc.watchlist$ | async as list">
+    <p *ngIf="!list.length">
+      You don't have any films saved to your watchlist yet.
+    </p>
+
+    <div class="cards-grid">
+      <app-card *ngFor="let film of list; trackBy: trackById" [film]="film">
+      </app-card>
+    </div>
+  </div>
+</div>

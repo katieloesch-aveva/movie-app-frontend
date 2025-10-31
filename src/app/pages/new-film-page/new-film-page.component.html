@@ -65,11 +65,18 @@
 
       <div class="form-group">
         <label>Genres:</label>
-        <div class="genre-input">
+
+        <div class="genre-inputs">
+          <!-- Dropdown select -->
+          <select #selected (change)="addGenre(selected.value)">
+            <option value="">-- Choose genre --</option>
+            <option *ngFor="let g of genresList" [value]="g">{{ g }}</option>
+          </select>
+
           <input
             type="text"
             formControlName="newGenre"
-            placeholder="Add genre"
+            placeholder="Or type custom genre"
           />
           <button type="button" (click)="addGenre()">Add</button>
         </div>
@@ -78,10 +85,25 @@
           <li *ngFor="let g of genre.controls; let i = index">
             {{ g.value }}
             <button type="button" class="remove-btn" (click)="removeGenre(i)">
-              x
+              ×
             </button>
           </li>
         </ul>
+      </div>
+
+      <div class="form-group">
+        <label>Poster URL:</label>
+        <input
+          type="url"
+          formControlName="poster_url"
+          placeholder="Enter poster image URL"
+        />
+        <div *ngIf="submitted && f['poster_url'].errors" class="error">
+          <small *ngIf="f['poster_url'].errors['imageUrl']">
+            Must be a valid image URL (http/https) ending in
+            png/jpg/jpeg/webp/gif/svg/avif
+          </small>
+        </div>
       </div>
 
       <button type="submit">Add Film</button>
