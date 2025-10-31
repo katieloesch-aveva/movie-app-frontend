@@ -1,10 +1,14 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+/>
+
 <div class="search-page">
   <div class="search-container">
     <h2>Search for a Film</h2>
 
     <form class="search-form" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label>Film Title:</label>
         <input
           type="text"
           formControlName="title"
@@ -13,16 +17,18 @@
       </div>
 
       <div class="button-group">
-        <button type="submit">Search</button>
         <button type="button" class="reset-btn" (click)="onReset()">
-          Reset
+          X
+        </button>
+        <button type="submit" class="submit-btn">
+          <i class="fa fa-search"></i>
         </button>
       </div>
     </form>
 
     <div *ngIf="submitted">
       <h3 *ngIf="filmResults.length > 0">Results:</h3>
-      <div *ngIf="filmResults.length > 0; else noResults">
+      <div *ngIf="filmResults.length > 0; else noResults" class="results-grid">
         <app-card *ngFor="let film of filmResults" [film]="film"></app-card>
       </div>
 
