@@ -4,7 +4,6 @@
       class="film-details__poster"
       [src]="f.poster_url || 'assets/placeholder-img.png'"
       [alt]="f.title || 'Poster'"
-      (error)="f.poster_url = 'assets/placeholder-img.png'"
     />
   </div>
   
@@ -36,10 +35,6 @@
   </div>
   
 </div>
-
-<ng-template #notFound>
-  <p>Film not found.</p>
-</ng-template>
 
 <ng-template #notFound>
   <p>Film not found.</p>
