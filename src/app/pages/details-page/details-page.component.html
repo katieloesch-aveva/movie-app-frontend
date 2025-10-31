@@ -4,34 +4,40 @@
       class="film-details__poster"
       [src]="f.poster_url || 'assets/placeholder-img.png'"
       [alt]="f.title || 'Poster'"
-      (error)="f.poster_url = 'assets/placeholder-img.png'"
     />
   </div>
-  <app-btn-watchlist [film]="film"></app-btn-watchlist>
+
+  <app-btn-watchlist [film]="f"></app-btn-watchlist>
+
+  <app-btn-edit
+    *ngIf="film && (watchlist.isInWatchlist$(film.id) | async)"
+    [film]="f"
+  ></app-btn-edit>
 
   <ul class="film-details__container">
     <li><span class="film-details__label">Title:</span> {{ f.title }}</li>
-    <li>
+
+    <li *ngIf="f.release">
       <span class="film-details__label">Released:</span>
       {{ f.release | date : "yyyy" }}
     </li>
-    <li>
+
+    <li *ngIf="f.runtime && f.runtime > 0">
       <span class="film-details__label">Runtime:</span>
-      {{ f.runtime ?? "—" }} mins
+      {{ f.runtime }} mins
     </li>
+
     <li>
-      <span class="film-details__label">Synopsis:</span> {{ f.synopsis ?? "—" }}
+      <span class="film-details__label">Synopsis:</span>
+      {{ f.synopsis ?? "—" }}
     </li>
+
     <li>
       <span class="film-details__label">Genres:</span>
       {{ f.genre?.join(", ") || "—" }}
     </li>
   </ul>
 </div>
-
-<ng-template #notFound>
-  <p>Film not found.</p>
-</ng-template>
 
 <ng-template #notFound>
   <p>Film not found.</p>

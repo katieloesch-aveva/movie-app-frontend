@@ -8,10 +8,9 @@ describe('EditFilmPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditFilmPageComponent]
-    })
-    .compileComponents();
-    
+      imports: [EditFilmPageComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(EditFilmPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
