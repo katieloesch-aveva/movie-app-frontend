@@ -1,8 +1,65 @@
 .search-page {
   .search-container {
     display: flex;
+    padding-top: 80px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: white;
+
+    .search-form{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 0;
+      width: 100%;
+
+      .form-group{
+        width: 30%;
+      }
+
+      input{
+        border: none;
+        height: 30px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 20px 0 0 20px;
+      }
+
+      input:focus{
+        outline: none;
+        box-shadow: none;
+        border: none;
+      }
+
+      button{
+        border: none;
+        height: 50px;
+        padding-inline: 20px;
+        font-weight: bold;
+      }
+
+      .reset-btn{
+        background-color: white;
+        border-right: 2px solid black;
+      }
+
+      .submit-btn{
+        border-radius: 0 20px 20px 0;
+      }
+    }
+
+    h3{
+      text-align: center
+    }
+
+    .results-grid{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 60px;
+      justify-content: center;
+    }
+    
   }
 }
