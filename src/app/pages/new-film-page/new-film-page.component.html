@@ -19,7 +19,7 @@
               >Minimum 2 characters.</small
             >
           </div>
-        </div> 
+        </div>
       </div>
 
       <div class="form-group">
@@ -36,21 +36,21 @@
 
       <div class="form-group">
         <label>Runtime (mins):</label>
-          <div class="form">
-            <input
-              type="number"
-              formControlName="runtime"
-              placeholder="Enter runtime"
-            />
-            <div *ngIf="submitted && f['runtime'].errors" class="error">
-              <small *ngIf="f['runtime'].errors['required']"
-                >Runtime is required.</small
-              >
-              <small *ngIf="f['runtime'].errors['min']"
-                >Must be at least 1 minute.</small
-              >
-            </div>
+        <div class="form">
+          <input
+            type="number"
+            formControlName="runtime"
+            placeholder="Enter runtime"
+          />
+          <div *ngIf="submitted && f['runtime'].errors" class="error">
+            <small *ngIf="f['runtime'].errors['required']"
+              >Runtime is required.</small
+            >
+            <small *ngIf="f['runtime'].errors['min']"
+              >Must be at least 1 minute.</small
+            >
           </div>
+        </div>
       </div>
 
       <div class="form-group">
@@ -75,8 +75,10 @@
         <label>Genres:</label>
         <div class="genre-group">
           <div class="genre-inputs">
-            <!-- Dropdown select -->
-            <select #selected (change)="addGenre(selected.value)">
+            <select
+              #selected
+              (change)="addGenre(selected.value); selected.selectedIndex = 0"
+            >
               <option value="">-- Choose genre --</option>
               <option *ngFor="let g of genresList" [value]="g">{{ g }}</option>
             </select>

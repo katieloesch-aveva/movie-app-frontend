@@ -1,3 +1,112 @@
-<div class="edit-film-page">
-  <h2>Edit Film</h2>
+<div class="film-page">
+  <div class="film-container">
+    <h2>Edit Film</h2>
+
+    <form class="film-form" [formGroup]="filmForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Title:</label>
+        <input
+          type="text"
+          formControlName="title"
+          placeholder="Enter film title"
+        />
+        <div *ngIf="submitted && f['title'].errors" class="error">
+          <small *ngIf="f['title'].errors['required']"
+            >Title is required.</small
+          >
+          <small *ngIf="f['title'].errors['minlength']"
+            >Minimum 2 characters.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Release Date:</label>
+        <input type="date" formControlName="release" />
+        <div *ngIf="submitted && f['release'].errors" class="error">
+          <small *ngIf="f['release'].errors['required']"
+            >Release date is required.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Runtime (mins):</label>
+        <input
+          type="number"
+          formControlName="runtime"
+          placeholder="Enter runtime"
+        />
+        <div *ngIf="submitted && f['runtime'].errors" class="error">
+          <small *ngIf="f['runtime'].errors['required']"
+            >Runtime is required.</small
+          >
+          <small *ngIf="f['runtime'].errors['min']"
+            >Must be at least 1 minute.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Synopsis:</label>
+        <textarea
+          formControlName="synopsis"
+          placeholder="Write a short synopsis..."
+        ></textarea>
+        <div *ngIf="submitted && f['synopsis'].errors" class="error">
+          <small *ngIf="f['synopsis'].errors['required']"
+            >Synopsis is required.</small
+          >
+          <small *ngIf="f['synopsis'].errors['minlength']"
+            >At least 10 characters.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Genres:</label>
+
+        <div class="genre-inputs">
+          <select #selected (change)="addGenre(selected.value)">
+            <option value="">-- Choose genre --</option>
+            <option *ngFor="let g of genresList" [value]="g">{{ g }}</option>
+          </select>
+        </div>
+
+        <ul class="genre-list">
+          <li *ngFor="let g of genre.controls; let i = index">
+            {{ g.value }}
+            <button type="button" class="remove-btn" (click)="removeGenre(i)">
+              ×
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-group">
+        <label>Poster URL:</label>
+        <input
+          type="url"
+          formControlName="poster_url"
+          placeholder="Enter poster image URL"
+        />
+        <div *ngIf="submitted && f['poster_url'].errors" class="error">
+          <small *ngIf="f['poster_url'].errors['imageUrl']">
+            Must be a valid image URL (http/https) ending in
+            png/jpg/jpeg/webp/gif/svg/avif
+          </small>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <button type="submit">Save Changes</button>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+    </form>
+  </div>
 </div>

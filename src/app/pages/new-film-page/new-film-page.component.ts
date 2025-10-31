@@ -16,10 +16,12 @@ import { Film } from '../../models/film.model';
 import { TMDB_GENRES_MOVIES } from '../../utils/tmdb.util';
 
 function imageUrlValidator(): ValidatorFn {
-  const re = /^https?:\/\/[^\s]+$/i;
+  const re =
+    /^(https?:\/\/[^\s]+|data:image\/[a-zA-Z]+;base64,[^\s]+|file:\/\/[^\s]+)$/i;
+
   return (control: AbstractControl): ValidationErrors | null => {
     const v = (control.value ?? '').toString().trim();
-    if (!v) return null;
+    if (!v) return null; // empty is valid; use 'required' separately
     return re.test(v) ? null : { imageUrl: true };
   };
 }
@@ -43,6 +45,7 @@ export class NewFilmPageComponent {
     synopsis: ['', [Validators.required, Validators.minLength(10)]],
     genre: this.fb.array<string>([]),
     newGenre: [''],
+    selectedGenre: [''],
     poster_url: ['', [imageUrlValidator()]],
   });
 
@@ -68,6 +71,7 @@ export class NewFilmPageComponent {
     if (!exists) this.genre.push(this.fb.control<string>(value));
 
     this.filmForm.get('newGenre')?.reset('');
+    this.filmForm.get('selectedGenre')?.reset('');
   }
 
   removeGenre(index: number): void {
@@ -119,6 +123,7 @@ export class NewFilmPageComponent {
         runtime: null,
         synopsis: '',
         newGenre: '',
+        selectedGenre: '',
         poster_url: '',
       });
       this.genre.clear();

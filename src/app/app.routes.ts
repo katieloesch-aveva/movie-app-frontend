@@ -18,5 +18,9 @@ export const routes: Routes = [
   { path: 'auth/login', component: LoginPageComponent, title: 'Login' },
   { path: 'auth/signup', component: SignupPageComponent, title: 'Signup' },
   { path: 'film/new', component: NewFilmPageComponent, title: 'Add Film' },
-  { path: 'film/edit', component: EditFilmPageComponent, title: 'Edit Film' },
+  {
+    path: 'film/edit/:id',
+    component: EditFilmPageComponent,
+    title: 'Edit Film',
+  },
 ];

@@ -1,6 +1,6 @@
-import { Component, Input, EventEmitter, Output, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Film } from '../../models/film.model';
@@ -11,24 +11,31 @@ import { BtnEditComponent } from '../btn-edit/btn-edit.component';
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [RouterLink, CommonModule, BtnWatchlistComponent, BtnEditComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    BtnWatchlistComponent,
+    BtnEditComponent,
+  ],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
 })
 export class CardComponent {
-  @Input() film!: Film;
-  watchlist = inject(WatchlistService);
+  private router = inject(Router);
+  private watchlist = inject(WatchlistService);
+
+  @Input({ required: true }) film!: Film;
+
+  // observable of IDs in watchlist
   ids$: Observable<Set<number>> = this.watchlist.ids$;
 
-  addToWatchlist() {
-    this.watchlist.add(this.film);
+  // navigate to film details
+  goToDetails(id: number) {
+    this.router.navigate(['/details', id]);
   }
 
-  removeFromWatchlist() {
-    this.watchlist.remove(this.film.id);
-  }
-
-  toggleWatchlist() {
-    this.watchlist.toggle(this.film);
+  // determines if a film is in the watchlist (async observable)
+  isInWatchlist$(filmId: number) {
+    return this.watchlist.isInWatchlist$(filmId);
   }
 }
