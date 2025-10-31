@@ -6,4 +6,6 @@ export interface Film {
   synopsis?: string;
   genre?: string[];
   poster_url?: string;
+  source: 'tmdb' | 'user';
+  tmdbId?: number;
 }

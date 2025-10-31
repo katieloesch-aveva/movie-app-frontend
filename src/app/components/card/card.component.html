@@ -1,4 +1,11 @@
 <a [routerLink]="['/details', film.id]" [state]="{ film }" class="film-card">
-  <img [src]="film.poster_url" [alt]="film.title || 'Poster'" />
+  <img
+    [src]="film.poster_url || 'assets/placeholder-img.png'"
+    [alt]="film.title || 'Poster'"
+    (error)="film.poster_url = 'assets/placeholder-img.png'"
+  />
   <span>{{ film.title }}</span>
 </a>
+
+<app-btn-watchlist [film]="film"></app-btn-watchlist>
+<app-btn-edit [film]="film"></app-btn-edit>

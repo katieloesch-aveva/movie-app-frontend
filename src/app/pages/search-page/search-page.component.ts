@@ -56,7 +56,7 @@ export class SearchPageComponent {
         }));
         this.filmResults = queryResults.map((r: any) => extractFilmData(r));
 
-        console.log(queryResults);
+        // console.log(queryResults);
         this.searchForm.reset({ title: '' });
       },
       error: (err) => {

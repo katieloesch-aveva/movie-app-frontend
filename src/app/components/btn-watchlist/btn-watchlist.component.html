@@ -1,0 +1,9 @@
+<button
+  type="button"
+  *ngIf="ids$ | async as ids"
+  (click)="toggle(); $event.stopPropagation()"
+  [attr.aria-pressed]="ids.has(film.id)"
+  class="btn-watchlist"
+>
+  {{ ids.has(film.id) ? "remove from watchlist" : "add to watchlist" }}
+</button>
