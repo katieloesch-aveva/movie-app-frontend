@@ -3,7 +3,7 @@ import { Film } from '../models/film.model';
 export const IMG_BASE = 'https://image.tmdb.org/t/p';
 export const IMG_WIDTH = 500;
 
-const TMDB_GENRES_MOVIES: Record<number, string> = {
+export const TMDB_GENRES_MOVIES: Record<number, string> = {
   28: 'Action',
   12: 'Adventure',
   16: 'Animation',
@@ -53,6 +53,8 @@ export function getPosterUrl(poster_path?: string, poster_link?: string) {
 export function extractFilmData(raw: any): Film {
   return {
     id: raw.id,
+    tmdbId: raw.id,
+    source: 'tmdb',
     title: raw.title ?? raw.original_title ?? 'Untitled',
     runtime: raw.runtime ?? undefined,
     release: raw.release_date ? new Date(raw.release_date) : undefined,

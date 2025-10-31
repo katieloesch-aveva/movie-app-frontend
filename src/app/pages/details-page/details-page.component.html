@@ -1,12 +1,13 @@
-<!-- details-page.component.html -->
 <div class="film-details" *ngIf="film as f; else notFound">
   <div class="film-details__header">
     <img
       class="film-details__poster"
       [src]="f.poster_url || 'assets/placeholder-img.png'"
       [alt]="f.title || 'Poster'"
+      (error)="f.poster_url = 'assets/placeholder-img.png'"
     />
   </div>
+  <app-btn-watchlist [film]="film"></app-btn-watchlist>
 
   <ul class="film-details__container">
     <li><span class="film-details__label">Title:</span> {{ f.title }}</li>
