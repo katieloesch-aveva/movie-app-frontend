@@ -22,19 +22,18 @@ import { BtnEditComponent } from '../btn-edit/btn-edit.component';
 })
 export class CardComponent {
   private router = inject(Router);
-  private watchlist = inject(WatchlistService);
+  public watchlist = inject(WatchlistService);
 
   @Input({ required: true }) film!: Film;
 
-  // observable of IDs in watchlist
+  placeholderSrc = 'assets/placeholder-img.png';
+
   ids$: Observable<Set<number>> = this.watchlist.ids$;
 
-  // navigate to film details
   goToDetails(id: number) {
     this.router.navigate(['/details', id]);
   }
 
-  // determines if a film is in the watchlist (async observable)
   isInWatchlist$(filmId: number) {
     return this.watchlist.isInWatchlist$(filmId);
   }
