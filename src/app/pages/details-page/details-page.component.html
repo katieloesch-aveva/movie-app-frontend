@@ -7,29 +7,34 @@
       (error)="f.poster_url = 'assets/placeholder-img.png'"
     />
   </div>
-  <app-btn-watchlist [film]="film"></app-btn-watchlist>
-
+  
+  <div class="film__info__main">
   <ul class="film-details__container">
-    <div class="film-details__header">
+    <div class="title_container">
     <li class="title__label"> {{ f.title }} ({{ f.release | date : "yyyy" }})</li>
+    <app-btn-watchlist [film]="film" class="watchlist__button"></app-btn-watchlist>
     </div>
-    <!-- <li>
-      <span class="film-details__label">Released:</span>
-      {{ f.release | date : "yyyy" }}
-    </li> -->
-    <li>
-      <span class="film-details__label">{{ f.runtime ?? "—" }} mins</span>
-     
-      
-    </li>
-    <li>
-      <span> {{ f.genre?.join(", ") || "—" }} </span>
-      
-    </li>
-    <li>
-      <span class="film-details__label"></span> {{ f.synopsis ?? "—" }}
-    </li>
+
+    <div class="film-info__container">
+      <li>
+        <span class="film-details__label">{{ f.runtime ?? "—" }} minutes</span>      
+      </li>
+
+      <li>
+        <span class="film-details__label" class="color__purple"> {{ f.genre?.join(", ") || "—" }} </span>  
+      </li>
+
+      <!-- <li>
+        <span class="synopsis__text"></span> {{ f.synopsis ?? "—" }}
+      </li> -->
+    </div>
+    
   </ul>
+  <li class="outside__box">
+    <span class="synopsis__text">{{ f.synopsis ?? "—" }}</span> 
+  </li>
+  </div>
+  
 </div>
 
 <ng-template #notFound>

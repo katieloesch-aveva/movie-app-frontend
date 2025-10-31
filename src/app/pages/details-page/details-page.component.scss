@@ -1,64 +1,146 @@
 .film-details {
-  margin-top: 60px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  //border: 1px solid red;
-  border-radius: 44.69%;
-  //background-image: linear-gradient(to bottom, black, black, black);
-  // border-bottom: 0.69em solid rgb(132, 52, 161);
-  // //border-left: 0.0em solid rgb(132, 52, 161);
-  // border-right: 0.269em solid rgb(132, 52, 161);
-  margin-left: 66.69%;
-  margin-right: 66.69%;
-  //box-shadow: 0.69em 0.69em 0.69em rgba(0, 0, 0, 0.8);
-  
-  padding-right: 2em;
-
-
-  .film-details__container {
-    display: flex;
-    flex-direction: column;
-    gap: 11.4em;
-    list-style: none;
-    color: white;
-    font-size: 11.4em;
-
-  }
-
-  .film-details__label {
-    font-weight: bold;
-    color: white;
-    
-  }
+  overflow: hidden;
+  margin-left: 0;
+  //margin-top: 60px;
+  display: flex;
+  width: 100%;
+  height: 98dvh;
+  //border: solid blue;
+  //margin-right: auto;
 
   .title__label{
     font-weight: bold;
     color: white; 
-    font-size: 11.69em; 
-    margin: auto;
-    margin-bottom: 11.69em;
+    font-size: 1.69em; 
+    
+  }
+
+  .film__info__main{
+    display: flex;
+    flex-direction: column;
+    //justify-content: space-between;
+    //gap: 1em;
+    box-sizing: border-box;
+    width: 80%;
+    margin-bottom: 2em;
+  }
+
+  .film-details__container {
+    //border: solid red;
+    //width: 100%;
+    margin-top: calc(50px + 1em);
+    //margin-top:0lvh;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding-bottom: 1.69em;
+    padding-top: 1em;
+    gap: 6.9em;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    color: white;
+    font-size: 1.4em;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(2.8em);
+    border-radius: 0.69em;
+    box-shadow: 0 0.25em 2.69em rgba(0, 0, 0, 0.22);
+    z-index: -10;
+    
+    height: fit-content;
+    
+    
+
+    .film-details__label {
+    font-weight: bold;
+    font-size: 1.28em;
+    color: rgb(225, 211, 242);
+  }
+
+  }
+
+  .title_container{
+    //border: solid green;
+    //margin-left: 0.69em;
+    //margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.69em;
+    //margin-bottom: 8.69em;
+  }
+
+  .synopsis__text{
+    color: white;
+    font-size: 1.49em;
+    line-height: 1.69;
+  }
+
+  .outside__box{
+    margin-right: 1em;
+    margin-left: 1em;
+    //margin-bottom: 1em;
+    //margin-bottom: 1em;
+    list-style: none;
+    padding: 2em;
+    background: rgba(255, 255, 255, 0.0069);
+    backdrop-filter: blur(2.8em);
+    border-radius: 1em;
+    box-shadow: 0 0.25em 2.69em rgba(0, 0, 0, 0.22);
+  }
+
+  .watchlist__button::ng-deep button{
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(1em);
+    border-radius: 1em;
+    box-shadow: 0 0.25em 2.69em rgba(0, 0, 0, 0.01);
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: 1em;
+    padding: 1em 2em;
+    cursor: pointer;
+    box-shadow: none;
+    text-shadow: none;
+    transition: 0.28s;
+    
+  }
+
+  .watchlist__button::ng-deep button:hover{
+    //background: rgba(255, 255, 255, 0.28);
+    //backdrop-filter: blur(1em);
+    //border-radius: 1em;
+    box-shadow: 0 0.25em 2.69em rgba(0, 0, 0, 0.5);
+  }
+
+  .film-info__container{
+    //border: solid orange;
+    display: flex;
+    flex-direction: column;
+    gap: 1.69em;
+    
+    //border: 1px solid rgba(255, 255, 255, 0.3);
+    padding-left: 1em;
+    //padding-right: 1em;
+    //padding-top: 1em;
+    //padding-bottom: 0em;
   }
 
   .film-details__header{ 
+    //border: solid red;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    //width: 28em;
+    //height: 100dvh;
+    //border: solid red;
+    margin-right: 0;
+    margin-left: 0;
 
   }
   .film-details__poster{
-    border-bottom-left-radius: 66.9%;
-    border-bottom-right-radius: 66.9%;
-    max-width: 80%;
-    max-height: 80%; 
-    
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-
-    
-
-
+    width: 40em;
+    height: auto;
+    margin-top: calc(50px + 1em);
+    //width: 36em;
+    //height: 100dvh;
+    border-radius: 1em;
   }
 
 }
