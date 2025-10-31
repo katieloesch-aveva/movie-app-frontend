@@ -6,37 +6,34 @@
       [alt]="f.title || 'Poster'"
     />
   </div>
-
-  <app-btn-watchlist [film]="f"></app-btn-watchlist>
-
-  <app-btn-edit
-    *ngIf="film && (watchlist.isInWatchlist$(film.id) | async)"
-    [film]="f"
-  ></app-btn-edit>
-
+  
+  <div class="film__info__main">
   <ul class="film-details__container">
-    <li><span class="film-details__label">Title:</span> {{ f.title }}</li>
+    <div class="title_container">
+    <li class="title__label"> {{ f.title }} ({{ f.release | date : "yyyy" }})</li>
+    <app-btn-watchlist [film]="film" class="watchlist__button"></app-btn-watchlist>
+    </div>
 
-    <li *ngIf="f.release">
-      <span class="film-details__label">Released:</span>
-      {{ f.release | date : "yyyy" }}
-    </li>
+    <div class="film-info__container">
+      <li>
+        <span class="film-details__label">{{ f.runtime ?? "—" }} minutes</span>      
+      </li>
 
-    <li *ngIf="f.runtime && f.runtime > 0">
-      <span class="film-details__label">Runtime:</span>
-      {{ f.runtime }} mins
-    </li>
+      <li>
+        <span class="film-details__label" class="color__purple"> {{ f.genre?.join(", ") || "—" }} </span>  
+      </li>
 
-    <li>
-      <span class="film-details__label">Synopsis:</span>
-      {{ f.synopsis ?? "—" }}
-    </li>
-
-    <li>
-      <span class="film-details__label">Genres:</span>
-      {{ f.genre?.join(", ") || "—" }}
-    </li>
+      <!-- <li>
+        <span class="synopsis__text"></span> {{ f.synopsis ?? "—" }}
+      </li> -->
+    </div>
+    
   </ul>
+  <li class="outside__box">
+    <span class="synopsis__text">{{ f.synopsis ?? "—" }}</span> 
+  </li>
+  </div>
+  
 </div>
 
 <ng-template #notFound>
