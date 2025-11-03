@@ -18,7 +18,7 @@
     color-scheme: dark;
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    gap: 1.69em;
     color: white;
     // border: 1px solid blue;
     width: 32em;
@@ -31,6 +31,7 @@ label{
 
 .form-group{
     width: 100%;
+    font-size: 0.88em;
     display: flex;
     flex-direction: column;
 }
@@ -81,14 +82,14 @@ input[type="date"] {
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-    background-color: rgba($color: #ffffff, $alpha: 0.1);
+    background-color: rgba($color: #242424, $alpha: 0.28);
     padding: 1em;
     border-radius: 1em;
     transition: 0.28s ease;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator:hover {
-    background-color: rgba($color: #989898, $alpha: 0.28);
+    background-color: rgba($color: #5b5b5b, $alpha: 0.28);
     padding: 1em;
     border-radius: 1em;
 }
@@ -155,7 +156,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 }
 
 .submit-button{
-    margin-top: 1.69em;
+    margin-top: 0.69em;
     margin-right: 4.2em;
     margin-left: 4.2em;
     display: flex;
