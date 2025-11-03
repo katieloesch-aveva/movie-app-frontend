@@ -7,15 +7,15 @@ import { Film } from '../models/film.model';
 import { extractFilmData } from '../utils/tmdb.util';
 import { environment } from '../../environments/environment';
 
-const LS_KEY = 'watchlist';
+const LS_KEY = 'watchted';
 const isBrowser = typeof window !== 'undefined' && !!window.localStorage;
 
 @Injectable({ providedIn: 'root' })
-export class WatchlistService {
+export class WatchedService {
   private _store = new BehaviorSubject<Film[]>(this.loadInitial());
 
-  readonly watchlist$ = this._store.asObservable().pipe(distinctUntilChanged());
-  readonly ids$: Observable<Set<number>> = this.watchlist$.pipe(
+  readonly watched$ = this._store.asObservable().pipe(distinctUntilChanged());
+  readonly ids$: Observable<Set<number>> = this.watched$.pipe(
     map((list) => new Set(list.map((f) => Number(f.id))))
   );
 
@@ -64,11 +64,11 @@ export class WatchlistService {
   }
 
   getFilmById$(id: number): Observable<Film | undefined> {
-    return this.watchlist$.pipe(map((list) => list.find((f) => f.id === id)));
+    return this.watched$.pipe(map((list) => list.find((f) => f.id === id)));
   }
 
   isInWatchlist$(id: number): Observable<boolean> {
-    return this.watchlist$.pipe(map((list) => list.some((f) => f.id === id)));
+    return this.watched$.pipe(map((list) => list.some((f) => f.id === id)));
   }
 
   isInWatchlistSync(id: number): boolean {
