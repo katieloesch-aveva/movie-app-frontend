@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
@@ -29,23 +29,19 @@ export class DetailsPageComponent implements OnInit {
   private http = inject(HttpClient);
   public watchlist = inject(WatchlistService);
 
-  film?: Film;
+  film: Film | undefined;
 
   ngOnInit(): void {
     this.route.paramMap
       .pipe(
         map((pm) => Number(pm.get('id'))),
-
         switchMap((id) => {
           if (!Number.isFinite(id)) return of<Film | undefined>(undefined);
 
           const fromWatchlist = this.watchlist.getById(id);
           if (fromWatchlist) return of(fromWatchlist);
 
-          const params = new HttpParams()
-            .set('api_key', environment.tmdbKey)
-            .set('append_to_response', 'videos');
-
+          // fetch from TMDB
           return this.http
             .get<any>(
               `https://api.themoviedb.org/3/movie/${id}?api_key=${environment.tmdbKey}&append_to_response=videos`
@@ -62,10 +58,13 @@ export class DetailsPageComponent implements OnInit {
       });
   }
 
+  isInWatchlist$(id: number) {
+    return this.watchlist.isInWatchlist$(id);
+  }
+
   addToWatchlist(): void {
     if (this.film) this.watchlist.add(this.film);
   }
-
   removeFromWatchlist(): void {
     if (this.film) this.watchlist.remove(this.film.id);
   }

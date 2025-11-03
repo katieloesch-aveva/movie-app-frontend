@@ -25,6 +25,8 @@ export class BtnWatchlistComponent {
   ids$: Observable<Set<number>> = this.watchlist.ids$;
 
   toggle() {
+    console.log('toggle from watchlist button, film.id =', this.film?.id);
+
     this.watchlist.toggle(this.film);
   }
 

@@ -9,28 +9,29 @@
 
   <div class="film__info__main">
     <ul class="film-details__container">
-      <div class="title_container">
-        <li class="title__label">
+      <li class="title_container">
+        <span class="title__label">
           {{ f.title }} ({{ f.release | date : "yyyy" }})
-        </li>
-        <app-btn-watchlist
-          [film]="film"
-          class="watchlist__button"
-        ></app-btn-watchlist>
-      </div>
+        </span>
 
-      <div class="film-info__container">
-        <li *ngIf="f.runtime && f.runtime > 0">
-          <span class="film-details__label">{{ f.runtime }} minutes</span>
-        </li>
+        <app-btn-watchlist [film]="f"></app-btn-watchlist>
 
-        <li>
-          <span class="film-details__label" class="color__purple">
-            {{ f.genre?.join(", ") || "—" }}
-          </span>
-        </li>
-      </div>
+        <app-btn-edit
+          *ngIf="isInWatchlist$(f.id) | async"
+          [film]="f"
+        ></app-btn-edit>
+      </li>
+
+      <li class="film-info__container">
+        <span *ngIf="f.runtime && f.runtime > 0" class="film-details__label">
+          {{ f.runtime }} minutes
+        </span>
+        <span class="film-details__label color__purple">
+          {{ f.genre?.join(", ") || "—" }}
+        </span>
+      </li>
     </ul>
+
     <li class="outside__box">
       <span class="synopsis__text">{{ f.synopsis ?? "—" }}</span>
     </li>
