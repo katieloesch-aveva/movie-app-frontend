@@ -22,6 +22,7 @@ export class WatchlistService {
   constructor(private http: HttpClient) {}
 
   async add(film: Film | { id: number; source?: string }) {
+    console.log('adding...');
     const list = this._store.value;
     const exists = list.some((f) => f.id === film.id);
     if (exists) return;
