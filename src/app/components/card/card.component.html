@@ -6,7 +6,16 @@
   <span>{{ film.title }}</span>
 </a>
 
-<app-btn-watchlist [film]="film"></app-btn-watchlist>
+<button type="button" class="btn-more" (click)="openModal($event)">+</button>
 
-<app-btn-edit *ngIf="isInWatchlist$(film.id) | async" [film]="film">
-</app-btn-edit>
+<app-modal *ngIf="showModal" [film]="film" (closed)="closeModal()">
+  <app-btn-watchlist [film]="film"></app-btn-watchlist>
+
+  <app-btn-watched
+    *ngIf="isInWatchlist$(film.id) | async"
+    [film]="film"
+  ></app-btn-watched>
+
+  <app-btn-edit *ngIf="isInWatchlist$(film.id) | async" [film]="film">
+  </app-btn-edit>
+</app-modal>

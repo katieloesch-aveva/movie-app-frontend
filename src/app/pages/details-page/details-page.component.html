@@ -20,6 +20,8 @@
           *ngIf="isInWatchlist$(f.id) | async"
           [film]="f"
         ></app-btn-edit>
+
+        <app-btn-watched [film]="f"></app-btn-watched>
       </li>
 
       <li class="film-info__container">
