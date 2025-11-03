@@ -22,6 +22,9 @@
         ></app-btn-edit>
 
         <app-btn-watched [film]="f"></app-btn-watched>
+        <button type="button" class="btn-more" (click)="openVideoModal($event)">
+          watch trailer
+        </button>
       </li>
 
       <li class="film-info__container">
@@ -43,3 +46,6 @@
 <ng-template #notFound>
   <p>Film not found.</p>
 </ng-template>
+
+<app-video-modal *ngIf="showVideoModal" (closed)="closeModal()">
+</app-video-modal>

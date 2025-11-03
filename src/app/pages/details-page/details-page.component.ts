@@ -13,6 +13,7 @@ import { BtnEditComponent } from '../../components/btn-edit/btn-edit.component';
 import { environment } from '../../../environments/environment';
 import { extractFilmData } from '../../utils/tmdb.util';
 import { WatchedService } from '../../services/watched.service';
+import { VideoModalComponent } from '../../components/video-modal/video-modal.component';
 
 @Component({
   selector: 'app-details-page',
@@ -23,6 +24,7 @@ import { WatchedService } from '../../services/watched.service';
     BtnWatchlistComponent,
     BtnEditComponent,
     BtnWatchedComponent,
+    VideoModalComponent,
   ],
   templateUrl: './details-page.component.html',
   styleUrl: './details-page.component.scss',
@@ -32,6 +34,8 @@ export class DetailsPageComponent implements OnInit {
   private http = inject(HttpClient);
   public watchlist = inject(WatchlistService);
   public watched = inject(WatchedService);
+
+  showVideoModal = false;
 
   film: Film | undefined;
 
@@ -84,5 +88,17 @@ export class DetailsPageComponent implements OnInit {
   }
   removeFromWathed(): void {
     if (this.film) this.watched.remove(this.film.id);
+  }
+
+  openVideoModal(event?: MouseEvent) {
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+    this.showVideoModal = true;
+  }
+
+  closeModal() {
+    this.showVideoModal = false;
   }
 }
