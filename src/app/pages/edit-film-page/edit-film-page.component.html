@@ -4,8 +4,8 @@
 
     <form class="film-form" [formGroup]="filmForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label>Title:</label>
-        <input
+        <label>Edit Title</label>
+        <input class="title-input"
           type="text"
           formControlName="title"
           placeholder="Enter film title"
@@ -21,8 +21,8 @@
       </div>
 
       <div class="form-group">
-        <label>Release Date:</label>
-        <input type="date" formControlName="release" />
+        <label>Change Release Date</label>
+        <input type="date" formControlName="release" class="date-input"/>
         <div *ngIf="submitted && f['release'].errors" class="error">
           <small *ngIf="f['release'].errors['required']"
             >Release date is required.</small
@@ -31,24 +31,22 @@
       </div>
 
       <div class="form-group">
-        <label>Runtime (mins):</label>
-        <input
-          type="number"
-          formControlName="runtime"
-          placeholder="Enter runtime"
+        <label>Change Image URL</label>
+        <input class="image-input"
+          type="url"
+          formControlName="poster_url"
+          placeholder="Enter poster image URL"
         />
-        <div *ngIf="submitted && f['runtime'].errors" class="error">
-          <small *ngIf="f['runtime'].errors['required']"
-            >Runtime is required.</small
-          >
-          <small *ngIf="f['runtime'].errors['min']"
-            >Must be at least 1 minute.</small
-          >
+        <div *ngIf="submitted && f['poster_url'].errors" class="error">
+          <small *ngIf="f['poster_url'].errors['imageUrl']">
+            Must be a valid image URL (http/https) ending in
+            png/jpg/jpeg/webp/gif/svg/avif
+          </small>
         </div>
       </div>
 
       <div class="form-group">
-        <label>Synopsis:</label>
+        <label>Edit Description</label>
         <textarea
           formControlName="synopsis"
           placeholder="Write a short synopsis..."
@@ -64,11 +62,11 @@
       </div>
 
       <div class="form-group">
-        <label>Genres:</label>
+        <label>Choose Genres</label>
 
         <div class="genre-inputs">
           <select #selected (change)="addGenre(selected.value)">
-            <option value="">-- Choose genre --</option>
+            <option value="">select</option>
             <option *ngFor="let g of genresList" [value]="g">{{ g }}</option>
           </select>
         </div>
@@ -83,23 +81,37 @@
         </ul>
       </div>
 
+      
+
+      
+
       <div class="form-group">
-        <label>Poster URL:</label>
-        <input
-          type="url"
-          formControlName="poster_url"
-          placeholder="Enter poster image URL"
+        <div>
+        <input class="minutes-input"
+          type="number"
+          formControlName="runtime"
+          placeholder="Enter runtime"
         />
-        <div *ngIf="submitted && f['poster_url'].errors" class="error">
-          <small *ngIf="f['poster_url'].errors['imageUrl']">
-            Must be a valid image URL (http/https) ending in
-            png/jpg/jpeg/webp/gif/svg/avif
-          </small>
+        <label> mins</label>
+        </div>
+        <div *ngIf="submitted && f['runtime'].errors" class="error">
+          <small *ngIf="f['runtime'].errors['required']"
+            >Runtime is required.</small
+          >
+          <small *ngIf="f['runtime'].errors['min']"
+            >Must be at least 1 minute.</small
+          >
         </div>
       </div>
 
+      
+
+      
+
+      
+
       <!-- Buttons -->
-      <button type="submit">Save Changes</button>
+      <button type="submit" class="submit-button">Save Changes</button>
 
       <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}

@@ -1,0 +1,179 @@
+.film-page{
+    display: flex;
+    justify-content: center;
+}
+
+.title-input{
+    width:auto;
+    border: none;
+    // border: 1px solid red;
+    padding-top:  1em;
+    padding-bottom: 1em;
+    border-radius: 1em;
+    background-color: rgba($color: #ffffff, $alpha: 0.69);
+    font-size: 1.2em;
+}
+
+.film-form{
+    color-scheme: dark;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    color: white;
+    // border: 1px solid blue;
+    width: 32em;
+}
+
+
+label{
+    font-size: 1.42em;
+}
+
+.form-group{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.error{
+    color: red;
+}
+
+.image-input{
+    width: auto;
+    border-radius: 1em;
+    padding: 1em;
+}
+
+.minutes-input{
+  width: 2.4em;  
+}
+
+textarea{
+    background-color: rgba($color: #909090, $alpha: 0.69);
+    border: none;
+    min-width: 100%;
+    min-height: 5.5em;
+    max-height: 8em;
+    border-radius: 1em;
+    resize: none;
+    font-size: 1.28em;
+}
+
+input{
+    background-color: rgba($color: #ffffff, $alpha: 0.69);
+    border: none;
+    width: 95%;
+    border-radius: 0.49em;
+    padding: 0.42em;
+    font-size: 1.2em;
+    color: rgba($color: #1d0a2c, $alpha: 0.8);
+}
+
+input[type="date"] {
+    background-color: rgba($color: #ffffff, $alpha: 0.69);
+    border: none;
+    width: 100%;
+    padding: 0.42em;
+    font-size: 1.2em;
+    border-radius: 1em;
+    box-sizing: border-box;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color: rgba($color: #ffffff, $alpha: 0.1);
+    padding: 1em;
+    border-radius: 1em;
+    transition: 0.28s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    background-color: rgba($color: #989898, $alpha: 0.28);
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.genre-inputs{
+    width: 32%;
+}
+
+.genre-inputs select {
+    background-color: rgba(255, 255, 255, 0.69);
+    border: none;
+    border-radius: 1em;
+    padding: 0.8em 1em;
+    font-size: 1.2em;
+    color: black;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 0 0.42em rgba(255, 255, 255, 0.28);
+    transition: 0.4s ease;
+}
+
+.genre-inputs select:hover{
+    background-color: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 0 0.42em rgba(0, 0, 0, 0.28);
+}
+
+.genre-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6em;
+}
+
+
+
+.genre-list li {
+    background-color: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(2.8em);
+    color: white;
+    padding: 0.6em 1em;
+    border-radius: 1em;
+    box-shadow: 0 0.25em 2.69em rgba(0, 0, 0, 0.22);
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 1em;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 0 0.4em;
+    border-radius: 0.4em;
+    transition: background-color 0.3s ease;
+}
+
+.remove-btn:hover {
+    background-color: rgba(255, 255, 255, 0.28);
+}
+
+.submit-button{
+    margin-top: 1.69em;
+    margin-right: 4.2em;
+    margin-left: 4.2em;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    border: none;
+    padding-top: 1.42em;
+    padding-bottom: 1.42em;
+    background-color: rgba($color: #d59eff, $alpha: 0.69);
+    border-radius: 1em;
+    box-shadow: 0 0 0.69em rgba(255, 255, 255, 0.42);
+    display: flex;
+    align-items: center;
+    font-size: 1.28em;
+    transition: 0.4s ease;
+}
+
+.submit-button:hover{
+    background-color: rgba($color: #d59eff, $alpha: 0.99);
+    box-shadow: 0 0 0.69em rgba(0, 0, 0, 0.42);
+}
