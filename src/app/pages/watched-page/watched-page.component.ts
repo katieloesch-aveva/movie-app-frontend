@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { CardComponent } from '../../components/card/card.component';
+import { WatchedService } from '../../services/watched.service';
 
 @Component({
   selector: 'app-watched-page',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, CardComponent],
   templateUrl: './watched-page.component.html',
-  styleUrl: './watched-page.component.scss'
+  styleUrl: './watched-page.component.scss',
 })
 export class WatchedPageComponent {
+  svc = inject(WatchedService);
 
+  // avoid re-rendering identical cards
+  trackById = (_: number, f: { id: number }) => f.id;
 }
