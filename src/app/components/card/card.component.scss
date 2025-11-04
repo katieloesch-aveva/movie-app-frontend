@@ -6,7 +6,7 @@
   text-decoration: none;
   color: white;
   text-align: center;
-  background-color:  rgba(0, 0, 0, 0.3);
+  background-color:  rgba(220, 220, 220, 0.17);
   border-radius: 20px;
   width: 200px;
   height: 100%;
@@ -16,7 +16,7 @@
     border-radius: 20px 20px 0 0;
     width: 200px;
     padding-bottom: 10px;
-    transition: transform 0.4s ease;;
+    transition: transform 0.69s ease;
   }
 
   span{
@@ -25,6 +25,30 @@
 }
 
 .film-card:hover img{
-  transform: scale(1.2);
+  transform: scale(1.08);
+}
+
+.btn-more{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 50%;
+  background-color: rgba($color: #ffffff, $alpha: 0.88);
+  box-shadow:0 0 0.2em 0.02em rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(10em);
+  margin-top: 0.2em;
+  font-size: 1.69em;
+
+  transition: 0.44s ease;
+}
+
+.btn-more:hover{
+  transform: scale(1.14);
+  background-color: rgba($color: #ffffff, $alpha: 1);
+  box-shadow:0 0 0.2em 0.02em rgba(0, 0, 0, 0.69);
+  cursor: pointer;
 }
 
