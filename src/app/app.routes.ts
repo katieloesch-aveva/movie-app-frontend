@@ -19,7 +19,7 @@ export const routes: Routes = [
   { path: 'auth/signup', component: SignupPageComponent, title: 'Signup' },
   { path: 'film/new', component: NewFilmPageComponent, title: 'Add Film' },
   {
-    path: 'film/edit/:id',
+    path: 'film/edit/:id/:location',
     component: EditFilmPageComponent,
     title: 'Edit Film',
   },

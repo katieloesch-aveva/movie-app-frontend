@@ -16,12 +16,20 @@
 
         <app-btn-watchlist [film]="f"></app-btn-watchlist>
 
-        <app-btn-edit
-          *ngIf="isInWatchlist$(f.id) | async"
-          [film]="f"
-        ></app-btn-edit>
+        <ng-container *ngIf="isInWatchlist$(f.id) | async; else watchedEdit">
+          <app-btn-edit [item]="f" itemLocation="watchlist"></app-btn-edit>
+        </ng-container>
+
+        <ng-template #watchedEdit>
+          <app-btn-edit
+            *ngIf="isInWatched$(f.id) | async"
+            [item]="f"
+            itemLocation="watched"
+          ></app-btn-edit>
+        </ng-template>
 
         <app-btn-watched [film]="f"></app-btn-watched>
+
         <button type="button" class="btn-more" (click)="openVideoModal($event)">
           watch trailer
         </button>
