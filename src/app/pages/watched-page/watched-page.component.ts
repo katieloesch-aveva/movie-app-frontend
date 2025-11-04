@@ -9,7 +9,7 @@ import { WatchedService } from '../../services/watched.service';
   standalone: true,
   imports: [CommonModule, CardComponent],
   templateUrl: './watched-page.component.html',
-  styleUrl: './watched-page.component.scss',
+  styleUrl: '../watchlist-page/watchlist-page.component.scss',
 })
 export class WatchedPageComponent {
   svc = inject(WatchedService);
