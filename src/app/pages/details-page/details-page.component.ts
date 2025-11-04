@@ -8,9 +8,12 @@ import { map, switchMap } from 'rxjs/operators';
 import { Film } from '../../models/film.model';
 import { WatchlistService } from '../../services/watchlist.service';
 import { BtnWatchlistComponent } from '../../components/btn-watchlist/btn-watchlist.component';
+import { BtnWatchedComponent } from '../../components/btn-watched/btn-watched.component';
 import { BtnEditComponent } from '../../components/btn-edit/btn-edit.component';
 import { environment } from '../../../environments/environment';
 import { extractFilmData } from '../../utils/tmdb.util';
+import { WatchedService } from '../../services/watched.service';
+import { VideoModalComponent } from '../../components/video-modal/video-modal.component';
 
 @Component({
   selector: 'app-details-page',
@@ -20,6 +23,8 @@ import { extractFilmData } from '../../utils/tmdb.util';
     HttpClientModule,
     BtnWatchlistComponent,
     BtnEditComponent,
+    BtnWatchedComponent,
+    VideoModalComponent,
   ],
   templateUrl: './details-page.component.html',
   styleUrl: './details-page.component.scss',
@@ -28,6 +33,9 @@ export class DetailsPageComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private http = inject(HttpClient);
   public watchlist = inject(WatchlistService);
+  public watched = inject(WatchedService);
+
+  showVideoModal = false;
 
   film: Film | undefined;
 
@@ -39,7 +47,9 @@ export class DetailsPageComponent implements OnInit {
           if (!Number.isFinite(id)) return of<Film | undefined>(undefined);
 
           const fromWatchlist = this.watchlist.getById(id);
+          const fromWatched = this.watched.getById(id);
           if (fromWatchlist) return of(fromWatchlist);
+          if (fromWatched) return of(fromWatched);
 
           // fetch from TMDB
           return this.http
@@ -67,5 +77,28 @@ export class DetailsPageComponent implements OnInit {
   }
   removeFromWatchlist(): void {
     if (this.film) this.watchlist.remove(this.film.id);
+  }
+
+  isInWatched$(id: number) {
+    return this.watched.isInWatched$(id);
+  }
+
+  addToWatched(): void {
+    if (this.film) this.watched.add(this.film);
+  }
+  removeFromWathed(): void {
+    if (this.film) this.watched.remove(this.film.id);
+  }
+
+  openVideoModal(event?: MouseEvent) {
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+    this.showVideoModal = true;
+  }
+
+  closeModal() {
+    this.showVideoModal = false;
   }
 }

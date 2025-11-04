@@ -1,0 +1,20 @@
+<div class="modal-backdrop" (click)="close()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <header class="modal__header">
+      <h2>{{ film.title }}</h2>
+      <button
+        type="button"
+        class="modal__close"
+        (click)="close()"
+        aria-label="Close"
+      >
+        ✕
+      </button>
+    </header>
+
+    <div class="modal__body">
+      <app-btn-watchlist [film]="film"></app-btn-watchlist>
+      <app-btn-watched [film]="film"></app-btn-watched>
+    </div>
+  </div>
+</div>

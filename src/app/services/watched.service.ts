@@ -67,11 +67,11 @@ export class WatchedService {
     return this.watched$.pipe(map((list) => list.find((f) => f.id === id)));
   }
 
-  isInWatchlist$(id: number): Observable<boolean> {
+  isInWatched$(id: number): Observable<boolean> {
     return this.watched$.pipe(map((list) => list.some((f) => f.id === id)));
   }
 
-  isInWatchlistSync(id: number): boolean {
+  isInWatchedSync(id: number): boolean {
     return this._store.value.some((f) => f.id === id);
   }
 
