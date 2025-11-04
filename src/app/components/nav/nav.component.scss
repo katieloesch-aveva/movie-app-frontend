@@ -3,20 +3,28 @@ nav {
   gap: 1rem;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  width: 100%;
 }
 
-a{
-  background-color: rgb(59, 10, 81);
-  color: white;
-  padding: 2% 4% ;
+a {
+  background-color: rgba(249, 242, 255, 0.88);
+  box-shadow: 0 0 1.28em 0.0169em rgba(228, 228, 228, 0.22);
+  color: black;
+  font-weight: bold;
+  padding: 0.5em 1em;
   text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 20em;
-  
+  font-size: 1.1em;
+  white-space: nowrap;
+  box-sizing: border-box;
+  transition: 0.4s ease;
 }
 
-a:hover{
-  background-color: rgba(59, 10, 81, 0.6);
+a:hover {
+  background-color: rgba(219, 151, 253, 0.88);
+  box-shadow: 0 0 1.28em 0.0169em rgba(0, 0, 0, 0.22);
+  transform: scale(1.04);
 }
+
