@@ -1,0 +1,19 @@
+button{
+    margin: 0;
+    border: none;
+    border-radius: 0.42em;
+    color: white;
+    background-color: rgba($color: #494949, $alpha: 0.69);
+    box-shadow:0 0 1.28em 0.0169em rgba(62, 62, 62, 0.42);
+    backdrop-filter: blur(10em);
+    padding: 1em;
+    font-size: 0.49em;
+
+    transition: 0.4s ease;
+}
+
+button:hover{
+    background-color: rgba($color: #8d8d8d, $alpha: 0.69);
+    transform: scale(1.04);
+    cursor: pointer;
+}
