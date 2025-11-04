@@ -1,19 +1,16 @@
 .landing-page {
-  // background-color: beige;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  justify-items: center;
   flex-direction: column;
-  padding: 40px;
+  padding: 60px;
 
 
   .landing-page__film-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    gap: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      gap: 60px;
+      justify-content: center;
   }
 
   h3{
