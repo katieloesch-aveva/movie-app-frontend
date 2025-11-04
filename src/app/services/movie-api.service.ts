@@ -7,12 +7,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class MovieApiService {
-  constructor() {}
-
-  private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:7033/api/Movie';
-
-  public get(): Observable<any> {
-    return this.http.get(this.apiUrl);
-  }
+  // constructor() {}
+  // private http = inject(HttpClient);
+  // private apiUrl = 'http://localhost:7033/api/Movie';
+  // public get(): Observable<any> {
+  //   return this.http.get(this.apiUrl);
+  // }
 }

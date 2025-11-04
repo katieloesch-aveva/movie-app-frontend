@@ -10,12 +10,12 @@
 
 <app-modal *ngIf="showModal" [film]="film" (closed)="closeModal()">
   <app-btn-watchlist [film]="film"></app-btn-watchlist>
+  <app-btn-edit [item]="film" itemLocation="watchlist"> </app-btn-edit>
 
   <app-btn-watched
     *ngIf="isInWatchlist$(film.id) | async"
     [film]="film"
   ></app-btn-watched>
 
-  <app-btn-edit *ngIf="isInWatchlist$(film.id) | async" [film]="film">
-  </app-btn-edit>
+  <app-btn-edit [item]="film" itemLocation="watched"> </app-btn-edit>
 </app-modal>

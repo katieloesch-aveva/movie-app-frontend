@@ -11,11 +11,11 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { take } from 'rxjs/operators';
 
 import { Film } from '../../models/film.model';
 import { TMDB_GENRES_MOVIES } from '../../utils/tmdb.util';
 import { WatchlistService } from '../../services/watchlist.service';
+import { WatchedService } from '../../services/watched.service';
 
 function imageUrlValidator(): ValidatorFn {
   const re =
@@ -40,9 +40,13 @@ export class EditFilmPageComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private watchlist = inject(WatchlistService);
+  private watched = inject(WatchedService);
 
   filmForm!: FormGroup;
   filmId!: number;
+
+  itemLocation: 'watchlist' | 'watched' = 'watchlist';
+
   submitted = false;
   errorMessage = '';
   successMessage = '';
@@ -52,15 +56,38 @@ export class EditFilmPageComponent implements OnInit, OnDestroy {
     this.buildForm();
 
     const idParam = this.route.snapshot.paramMap.get('id');
+    const locationParam = this.route.snapshot.paramMap.get('location');
+
     if (!idParam) {
       this.errorMessage = 'Missing film ID.';
       return;
     }
 
     this.filmId = Number(idParam);
-    const film = this.watchlist.getById(this.filmId);
+
+    if (!Number.isFinite(this.filmId)) {
+      this.errorMessage = 'Invalid film ID.';
+      return;
+    }
+
+    this.itemLocation = locationParam === 'watched' ? 'watched' : 'watchlist';
+
+    let film: Film | undefined;
+    if (this.itemLocation === 'watchlist') {
+      film = this.watchlist.getById(this.filmId);
+      if (!film) {
+        film = this.watched.getById(this.filmId);
+      }
+    } else {
+      film = this.watched.getById(this.filmId);
+      if (!film) {
+        film = this.watchlist.getById(this.filmId);
+      }
+    }
+
     if (!film) {
-      this.errorMessage = 'Film not found in your watchlist.';
+      this.errorMessage =
+        'Error, film not found in your watchlist or watched list.';
       return;
     }
 
@@ -130,7 +157,17 @@ export class EditFilmPageComponent implements OnInit, OnDestroy {
     };
 
     try {
-      this.watchlist.updateFilm(updated);
+      const inWatchlist = !!this.watchlist.getById(this.filmId);
+      const inWatched = !!this.watched.getById(this.filmId);
+
+      if (inWatchlist) {
+        this.watchlist.updateFilm(updated);
+      }
+
+      if (inWatched) {
+        this.watched.updateFilm(updated);
+      }
+
       this.successMessage = 'Film updated successfully!';
       setTimeout(() => this.router.navigate(['/details', this.filmId]), 800);
     } catch (err: any) {

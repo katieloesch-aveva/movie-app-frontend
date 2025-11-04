@@ -11,11 +11,13 @@ import { Router, RouterModule } from '@angular/router';
 export class BtnEditComponent {
   constructor(private router: Router) {}
 
-  @Input({ required: true }) film!: { id: string | number };
+  @Input({ required: true }) item!: { id: string | number };
+  @Input() url: string = '/film/edit';
+  @Input() itemLocation: 'watchlist' | 'watched' = 'watchlist';
 
   goToEdit(): void {
-    if (this.film?.id != null) {
-      this.router.navigate(['/film/edit', this.film.id]);
+    if (this.item?.id != null) {
+      this.router.navigate([this.url, this.item.id, this.itemLocation]);
     }
   }
 }

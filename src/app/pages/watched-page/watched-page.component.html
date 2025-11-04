@@ -1,9 +1,9 @@
-<div class="watchlist-page">
+<div class="watched-page">
   <h2>Watch History</h2>
 
   <div *ngIf="svc.watched$ | async as list">
     <p *ngIf="!list.length">
-      You don't have any films saved to your watchlist yet.
+      You don't have any films saved to your watch history.
     </p>
 
     <div class="cards-grid">

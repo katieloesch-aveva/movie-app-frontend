@@ -13,12 +13,12 @@ import { MovieApiService } from './services/movie-api.service';
 export class AppComponent {
   title = 'movie-master';
 
-  apiMovies: any[] = [];
-  movieApiService = inject(MovieApiService);
+  // apiMovies: any[] = [];
+  // movieApiService = inject(MovieApiService);
 
-  constructor() {
-    this.movieApiService.get().subscribe((movies) => {
-      this.apiMovies = movies;
-    });
-  }
+  // constructor() {
+  //   this.movieApiService.get().subscribe((movies) => {
+  //     this.apiMovies = movies;
+  //   });
+  // }
 }
