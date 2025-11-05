@@ -8,14 +8,4 @@
 
 <button type="button" class="btn-more" (click)="openModal($event)">+</button>
 
-<app-modal *ngIf="showModal" [film]="film" (closed)="closeModal()">
-  <app-btn-watchlist [film]="film"></app-btn-watchlist>
-  <app-btn-edit [item]="film" itemLocation="watchlist"> </app-btn-edit>
-
-  <app-btn-watched
-    *ngIf="isInWatchlist$(film.id) | async"
-    [film]="film"
-  ></app-btn-watched>
-
-  <app-btn-edit [item]="film" itemLocation="watched"> </app-btn-edit>
-</app-modal>
+<app-modal *ngIf="showModal" [film]="film" (closed)="closeModal()"> </app-modal>

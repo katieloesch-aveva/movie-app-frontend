@@ -4,13 +4,13 @@ import { CommonModule } from '@angular/common';
 import { Film } from '../../models/film.model';
 import { WatchlistService } from '../../services/watchlist.service';
 import { WatchedService } from '../../services/watched.service';
-import { BtnWatchlistComponent } from '../btn-watchlist/btn-watchlist.component';
-import { BtnWatchedComponent } from '../btn-watched/btn-watched.component';
+import { BtnAddComponent } from '../btn-add/btn-add.component';
+import { BtnEditComponent } from '../btn-edit/btn-edit.component';
 
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [CommonModule, BtnWatchlistComponent, BtnWatchedComponent],
+  imports: [CommonModule, BtnAddComponent, BtnEditComponent],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss',
 })
@@ -18,8 +18,30 @@ export class ModalComponent {
   @Input({ required: true }) film!: Film;
   @Output() closed = new EventEmitter<void>();
 
-  private watchlist = inject(WatchlistService);
-  private watched = inject(WatchedService);
+  public watchlist = inject(WatchlistService);
+  public watched = inject(WatchedService);
+
+  isInWatchlist$(id: number) {
+    return this.watchlist.isInWatchlist$(id);
+  }
+
+  addToWatchlist(): void {
+    if (this.film) this.watchlist.add(this.film);
+  }
+  removeFromWatchlist(): void {
+    if (this.film) this.watchlist.remove(this.film.id);
+  }
+
+  isInWatched$(id: number) {
+    return this.watched.isInWatched$(id);
+  }
+
+  addToWatched(): void {
+    if (this.film) this.watched.add(this.film);
+  }
+  removeFromWathed(): void {
+    if (this.film) this.watched.remove(this.film.id);
+  }
 
   close() {
     this.closed.emit();

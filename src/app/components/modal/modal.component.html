@@ -13,8 +13,21 @@
     </header>
 
     <div class="modal__body">
-      <app-btn-watchlist [film]="film"></app-btn-watchlist>
-      <app-btn-watched [film]="film"></app-btn-watched>
+      <app-btn-add [item]="film" itemLocation="watchlist"></app-btn-add>
+
+      <ng-container *ngIf="isInWatchlist$(film.id) | async; else watchedEdit">
+        <app-btn-edit [item]="film" itemLocation="watchlist"></app-btn-edit>
+      </ng-container>
+
+      <ng-template #watchedEdit>
+        <app-btn-edit
+          *ngIf="isInWatched$(film.id) | async"
+          [item]="film"
+          itemLocation="watched"
+        ></app-btn-edit>
+      </ng-template>
+
+      <app-btn-add [item]="film" itemLocation="watched"></app-btn-add>
     </div>
   </div>
 </div>

@@ -1,18 +1,17 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
+import { environment } from '../../../environments/environment';
 import { Film } from '../../models/film.model';
 import { WatchlistService } from '../../services/watchlist.service';
-import { BtnWatchlistComponent } from '../../components/btn-watchlist/btn-watchlist.component';
-import { BtnWatchedComponent } from '../../components/btn-watched/btn-watched.component';
-import { BtnEditComponent } from '../../components/btn-edit/btn-edit.component';
-import { environment } from '../../../environments/environment';
-import { extractFilmData } from '../../utils/tmdb.util';
 import { WatchedService } from '../../services/watched.service';
+import { extractFilmData } from '../../utils/tmdb.util';
+import { BtnAddComponent } from '../../components/btn-add/btn-add.component';
+import { BtnEditComponent } from '../../components/btn-edit/btn-edit.component';
 import { VideoModalComponent } from '../../components/video-modal/video-modal.component';
 
 @Component({
@@ -21,9 +20,8 @@ import { VideoModalComponent } from '../../components/video-modal/video-modal.co
   imports: [
     CommonModule,
     HttpClientModule,
-    BtnWatchlistComponent,
+    BtnAddComponent,
     BtnEditComponent,
-    BtnWatchedComponent,
     VideoModalComponent,
   ],
   templateUrl: './details-page.component.html',
@@ -46,12 +44,13 @@ export class DetailsPageComponent implements OnInit {
         switchMap((id) => {
           if (!Number.isFinite(id)) return of<Film | undefined>(undefined);
 
+          // check if film is in watchlist/watched
           const fromWatchlist = this.watchlist.getById(id);
           const fromWatched = this.watched.getById(id);
           if (fromWatchlist) return of(fromWatchlist);
           if (fromWatched) return of(fromWatched);
 
-          // fetch from TMDB
+          // if film is not in watchlist/watched fetch details from TMDB API
           return this.http
             .get<any>(
               `https://api.themoviedb.org/3/movie/${id}?api_key=${environment.tmdbKey}&append_to_response=videos`
