@@ -7,21 +7,11 @@ import { Film } from '../../models/film.model';
 import { WatchlistService } from '../../services/watchlist.service';
 import { WatchedService } from '../../services/watched.service';
 import { ModalComponent } from '../modal/modal.component';
-import { BtnWatchedComponent } from '../btn-watched/btn-watched.component';
-import { BtnWatchlistComponent } from '../btn-watchlist/btn-watchlist.component';
-import { BtnEditComponent } from '../btn-edit/btn-edit.component';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    BtnWatchlistComponent,
-    BtnWatchedComponent,
-    BtnEditComponent,
-    ModalComponent,
-  ],
+  imports: [CommonModule, RouterModule, ModalComponent],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
 })

@@ -1,0 +1,10 @@
+<button
+  type="button"
+  class="btn btn-add-to-list"
+  *ngIf="ids$ | async as ids"
+  (click)="toggle(); $event.stopPropagation()"
+  [attr.aria-pressed]="ids.has(item.id)"
+  [ngClass]="buttonClass"
+>
+  {{ ids.has(item.id) ? removeLabel : addLabel }}
+</button>

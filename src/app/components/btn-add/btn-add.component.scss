@@ -1,0 +1,19 @@
+.btn-add-to-list {
+  border: none;
+  border-radius: 0.49em;
+  color: black;
+  background-color: rgba($color: #ffffff, $alpha: 0.69);
+  box-shadow: 0 0 1.28em 0.0169em rgba(130, 130, 130, 0.42);
+  backdrop-filter: blur(10em);
+  padding: 1em;
+  font-size: 0.88em;
+
+  transition: 0.4s ease;
+}
+
+.btn-add-to-list:hover {
+  background-color: rgba($color: #d1d1d1, $alpha: 0.69);
+  box-shadow: 0 0 1.28em 0.0169em rgba(0, 0, 0, 0.42);
+  transform: scale(1.04);
+  cursor: pointer;
+}

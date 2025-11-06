@@ -14,7 +14,7 @@
           {{ f.title }} ({{ f.release | date : "yyyy" }})
         </span>
 
-        <app-btn-watchlist [film]="f"></app-btn-watchlist>
+        <app-btn-add [item]="film" itemLocation="watchlist"></app-btn-add>
 
         <ng-container *ngIf="isInWatchlist$(f.id) | async; else watchedEdit">
           <app-btn-edit [item]="f" itemLocation="watchlist"></app-btn-edit>
@@ -28,7 +28,7 @@
           ></app-btn-edit>
         </ng-template>
 
-        <app-btn-watched [film]="f"></app-btn-watched>
+        <app-btn-add [item]="film" itemLocation="watched"></app-btn-add>
 
         <button type="button" class="btn-more" (click)="openVideoModal($event)">
           watch trailer
